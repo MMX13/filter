@@ -49,7 +49,9 @@ for segment in segments:
     draw = ImageDraw.Draw(palette)
     rect = [segment.position, (segment.position[0]+swidth, segment.position[1]+sheight)]
     print segment.hsv
-    draw.rectangle(rect, fill=segment.hsv, outline=segment.hsv)
+    #new_hsv = segment.hsv
+    new_hsv = (segment.hsv[0], 200, 200)
+    draw.rectangle(rect, fill=new_hsv, outline=new_hsv)
 
 palette.convert("RGB").save("assets/final2.jpg")
 
