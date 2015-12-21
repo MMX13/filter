@@ -145,12 +145,23 @@ def print_conversions():
             chart.putpixel((r, depth-1-g), hsv)
     chart.convert("RGB").save("assets/convert.bmp")
 
-def nice_rainbow():
+def ugly_rainbow():
     chart = Image.new("HSV", (depth, 100))
 
     for i in range(100):
         for h in range(depth):
-            hsv = colourx.hcl_to_rgb((h, 200, 200))
+            hsv = (h, 255, 200)
+            chart.putpixel((h, 99-i), hsv)
+
+    chart.convert("RGB").save("assets/rainbowugly.bmp")
+
+
+def nice_rainbow():
+    chart = Image.new("RGB", (depth, 100))
+
+    for i in range(100):
+        for h in range(depth):
+            hsv = colourx.hcl_to_rgb((h, 255, 100))
             chart.putpixel((h, 99-i), hsv)
 
     chart.convert("RGB").save("assets/rainbow.bmp")
@@ -176,3 +187,4 @@ if __name__ == "__main__":
     #print_conversions()
     #print_hcl_hc_chart()
     nice_rainbow()
+    ugly_rainbow()

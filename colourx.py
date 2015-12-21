@@ -47,6 +47,7 @@ def hcl_to_rgb(hcl):
     elif h <= 6:
         rgb = (c,0,x)
     m=l-(0.3*rgb[0] + 0.59*rgb[1] + 0.11*rgb[2])
+    #m=l-get_lum(rgb)
 
     rgb255 = []
     for e in rgb:
@@ -76,5 +77,5 @@ def rgb_to_hcl(rgb):
 
 
 def get_lum(rgb):
-    return int(math.sqrt(0.2126*rgb[0]**2 + 0.587*rgb[1]**2 + 0.114*rgb[2]**2))
-
+    #return int(math.sqrt(0.2126*rgb[0]**2 + 0.587*rgb[1]**2 + 0.114*rgb[2]**2))
+    return int(0.2126*rgb[0] + 0.587*rgb[1] + 0.114*rgb[2])
