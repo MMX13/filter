@@ -1,5 +1,7 @@
 from PIL import Image, ImageDraw
 import colorsys
+import colourx
+import image_analysis
 
 def image_rgb(image):
     r = g = b = 0
@@ -22,7 +24,8 @@ def rgb_to_hsv(color):
 class ImageSegment(object):
     def __init__(self, image, position):
         self.image = image
-        self.hsv = rgb_to_hsv(image_rgb(self.image))
+        #self.hsv = rgb_to_hsv(image_rgb(self.image))
+        self.hcl = image_analysis.image_hcl(self.image)
         self.position = (position[0]*self.image.size[0], position[1]*self.image.size[1])
 
 input = Image.open("assets/test.jpg")
@@ -43,15 +46,13 @@ for x in range(x_segments):
         new_segment = ImageSegment(input.crop(box), position)
         segments.append(new_segment)
 
-palette = Image.new("HSV", (twidth, theight))
+palette = Image.new("RGB", (twidth, theight))
 
 for segment in segments:
     draw = ImageDraw.Draw(palette)
     rect = [segment.position, (segment.position[0]+swidth, segment.position[1]+sheight)]
-    print segment.hsv
-    #new_hsv = segment.hsv
-    new_hsv = (segment.hsv[0], 200, 200)
-    draw.rectangle(rect, fill=new_hsv, outline=new_hsv)
+    rgb = colourx.hcl_to_rgb(segment.hcl)
+    draw.rectangle(rect, fill=rgb, outline=rgb)
 
 palette.convert("RGB").save("assets/final2.jpg")
 
