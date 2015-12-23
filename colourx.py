@@ -79,3 +79,10 @@ def rgb_to_hcl(rgb):
 def get_lum(rgb):
     #return int(math.sqrt(0.2126*rgb[0]**2 + 0.587*rgb[1]**2 + 0.114*rgb[2]**2))
     return int(0.2126*rgb[0] + 0.587*rgb[1] + 0.114*rgb[2])
+
+def blend_colour(color1, color2, amount):
+    inv_amount = 1-amount
+    r = color1[0]*inv_amount + color2[0]*amount
+    g = color1[1]*inv_amount + color2[1]*amount
+    b = color1[2]*inv_amount + color2[2]*amount
+    return (int(r), int(g), int(b))

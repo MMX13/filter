@@ -35,6 +35,9 @@ twidth = input.size[0]
 theight = input.size[1]
 swidth = twidth/x_segments
 sheight = theight/y_segments
+twidth = swidth*20
+theight = sheight*20
+
 
 segments = []
 for x in range(x_segments):

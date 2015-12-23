@@ -49,7 +49,7 @@ def hsv_rainbow():
 
     for i in range(100):
         for h in range(depth):
-            rgb = (h, 255, 200)
+            rgb = (h, 255, 255)
             chart.putpixel((h, 99-i), rgb)
 
     chart.convert("RGB").save("assets/rainbowhsv.bmp")
@@ -60,7 +60,7 @@ def hcl_rainbow():
 
     for i in range(100):
         for h in range(depth):
-            rgb = colourx.hcl_to_rgb((h, 255, 100))
+            rgb = colourx.hcl_to_rgb((h, 255, 255))
             chart.putpixel((h, 99-i), rgb)
 
     chart.convert("RGB").save("assets/rainbowhcl.bmp")
